@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="23.205000000000005mm" height="23.205000000000005mm" viewBox="0 0 23.205000000000005 23.205000000000005" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<g id="Breakaway_Enclosure_Lid" transform="translate(-63.397500,-8.397500) scale(1,-1)">
+<path id="Breakaway_Enclosure_Lid_f0000"  d="M 63.625 -31.374999999999996 L 86.375 -31.375000000000004 L 86.375 -31.375 L 63.625 -31.374999999999996 L 63.625 -31.374999999999996 Z " stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5;fill-opacity:0.85;fill-rule: evenodd"/>
+<path id="Breakaway_Enclosure_Lid_f0001"  d="M 86.375 -31.375000000000004 L 86.375 -31.375000000000004 L 86.375 -8.625 L 86.375 -8.625000000000002 L 86.375 -31.375000000000004 Z " stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5;fill-opacity:0.85;fill-rule: evenodd"/>
+<circle cx="84.375" cy="-30.375" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<path id="Breakaway_Enclosure_Lid_f0003"  d="M 63.625 -8.624999999999996 L 63.625 -31.374999999999996 L 63.625 -31.375 L 63.62500000000001 -8.625 L 63.625 -8.624999999999996 Z " stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5;fill-opacity:0.85;fill-rule: evenodd"/>
+<circle cx="84.375" cy="-30.375" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<path id="Breakaway_Enclosure_Lid_f0005"  d="M 86.375 -8.625000000000004 L 86.375 -8.625000000000004 L 63.625 -8.624999999999996 L 63.625 -8.624999999999998 L 86.375 -8.625000000000004 Z " stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5;fill-opacity:0.85;fill-rule: evenodd"/>
+<circle cx="84.375" cy="-30.375" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<circle cx="85.375" cy="-9.625000000000002" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<circle cx="65.625" cy="-30.375" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<circle cx="64.625" cy="-9.624999999999998" r="0.75" stroke="#191919" stroke-width="0.7 px" style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#1933e5"/>
+<title>b'Breakaway_Enclosure_Lid'</title>
+</g>
+</svg>

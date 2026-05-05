@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="17.340000000000003mm"
+   height="26.590000000000003mm"
+   viewBox="0 0 17.340000000000003 26.590000000000003"
+   version="1.1"
+   id="svg139"
+   sodipodi:docname="BusKill_USBA_Breakaway1-Wire_Jig_2.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs143" />
+  <sodipodi:namedview
+     id="namedview141"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.8707847"
+     inkscape:cx="32.789484"
+     inkscape:cy="50.248819"
+     inkscape:window-width="1920"
+     inkscape:window-height="1008"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Wire_Jig_2" />
+  <g
+     id="Wire_Jig_2"
+     transform="translate(25.170000,26.420000) scale(1,-1)">
+    <path
+       id="Wire_Jig_2_f0000"
+       d="M -25.0 6.25 L -25.0 0.0 L -25.0 0.0 L -25.0 6.25 L -25.0 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0001"
+       d="M -8.75 0.0 L -8.0 0.0 L -8.0 0.0 L -25.0 0.0 L -25.0 0.0 L -24.25 0.0 L -24.25 0.0 L -22.801635148313633 0.0 M -22.801635148313633 0.0 L -20.599999999999902 0.0 L -20.6 0.0 L -19.379861102179344 0.0 M -19.379861102179348 0.0 L -17.199999999999896 0.0 L -17.2 0.0 L -15.95 0.0 L -15.95 0.0 L -15.901635148313634 0.0 M -15.901635148313634 0.0 L -13.6999999999999 0.0 L -13.7 0.0 L -12.45 0.0 L -12.45 0.0 L -12.401635148313627 0.0 M -12.401635148313632 0.0 L -10.19836485168637 0.0 L -8.75 0.0 L -8.75 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0002"
+       d="M -24.25 6.25 L -24.25 0.0 L -25.0 0.0 L -25.0 6.25 L -24.25 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0003"
+       d="M -13.698364851686375 6.25 M -13.69836485168637 6.25 L -15.901635148313634 6.25 L -17.198364851686367 6.25 M -17.198364851686367 6.25 L -19.40163514831363 6.25 L -20.598364851686366 6.25 M -20.59836485168637 6.25 L -22.801635148313633 6.25 L -24.25 6.25 L -24.25 6.25 L -25.0 6.25 L -25.0 6.25 L -8.0 6.25 L -8.0 6.25 L -8.75 6.25 L -8.75 6.25 L -10.198364851686375 6.25 M -10.19836485168637 6.25 L -12.401635148313632 6.25 L -13.698364851686375 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0004"
+       d="M -8.0 0.0 L -25.0 0.0 L -25.0 6.25 L -8.0 6.25 L -8.0 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0005"
+       d="m -12.401635,6.25 h 2.20327 l 0,-6.25"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+       sodipodi:nodetypes="ccc" />
+    <path
+       id="Wire_Jig_2_f0006"
+       d="m -11.268336,-0.04450115 h -0.04837 V 4.2054989 h -1.248364 l 0,2 h 1.296729 l 0,-6.25000005 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0007"
+       d="M -12.45 0.0 L -12.45 0.0 L -13.698364851686375 0.0 M -13.69836485168637 0.0 L -13.6999999999999 0.0 L -13.7 0.0 L -12.45 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0009"
+       d="m -16.88935,-0.02283097 h -0.04837 V 4.227169 h -1.248365 v 2 h 1.29673 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0010"
+       d="M -15.95 0.0 L -15.95 0.0 L -17.198364851686367 0.0 M -17.198364851686367 0.0 L -17.199999999999896 0.0 L -17.2 0.0 L -15.95 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0011"
+       d="m -18.453979,-0.09633635 m 0,0 h -1.110845 V 4.2846811 m 0,0 h -0.0111 v 2.0616553 m 0,0 h 1.122774 V 4.2846811 m 0,0 h -8.14e-4 v -4.38101745 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.507345;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0012"
+       d="m -21.32901,-0.03913174 h 1.220139 m 0,0 h -0.02177 -1.196729 m 0,0 h -0.0016 0 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0013"
+       d="M -20.599999999999945 0.0 M -20.599999999999902 0.0 L -22.801635148313633 0.0 L -22.801635148313633 6.25 M -22.801635148313633 6.25 L -20.598364851686366 6.25 L -20.59836485168637 4.25 M -20.59836485168637 4.25 L -20.6 4.25 L -20.6 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0014"
+       d="M -22.801635148313633 0.0 L -24.25 0.0 L -24.25 6.25 L -22.801635148313633 6.25 L -22.801635148313633 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0015"
+       d="M -24.25 6.25 L -24.25 0.0 L -24.25 0.0 L -24.25 6.25 L -24.25 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0016"
+       d="M -8.0 6.25 L -8.0 6.25 L -8.0 0.0 L -8.0 0.0 L -8.0 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0017"
+       d="M -8.0 6.25 L -8.0 0.0 L -8.75 0.0 L -8.75 6.25 L -8.0 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0018"
+       d="M -8.75 6.25 L -8.75 6.25 L -8.75 0.0 L -8.75 0.0 L -8.75 6.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0019"
+       d="M -8.75 0.0 L -10.198364851686375 0.0 L -10.198364851686375 6.25 L -8.75 6.25 L -8.75 0.0 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0020"
+       d="m -20.130645,4.2108683 h -1.196729 l 0,2 h 1.196729 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0021"
+       d="M -12.45 4.25 L -12.45 4.25 L -12.45 0.0 L -12.45 0.0 L -12.45 4.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0022"
+       d="m -12.689471,4.2049322 v 0 m 0,0 h 0.0016 1.248365 0 -1.25 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0024"
+       d="m -12.545751,4.2545084 v -4.24999997 0 4.24999997 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0028"
+       d="m -20.07901,4.2108683 h -1.25 v 0 m 0,0 h 0.0016 1.196729 m 0,0 h 0.02177 0.02986 v 0 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0029"
+       d="m -20.07901,4.2108683 h -0.02986 v -4.25000004 h 0.02986 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0030"
+       d="M -17.2 4.25 L -17.2 0.0 L -17.2 0.0 L -17.2 4.25 L -17.2 4.25 Z "
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="stroke-width:0.7;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:#e5cc19;fill-opacity:1.0;fill-rule: evenodd" />
+    <path
+       id="Wire_Jig_2_f0031"
+       d="m -21.327374,-0.03913174 m 0,0 h -0.0016 0 1.25 v 0 h -0.02986 m 0,0 h -0.02177 -1.196729 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0032"
+       d="m -21.32901,4.2108683 v -4.25000004 0 4.25000004 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0033"
+       d="M -12.543389,4.2928508 V 0.04285072 h 1.25 V 4.2928508 Z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0034"
+       d="m -18.161691,4.2551301 v -4.25 h 1.25 v 4.25 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0035"
+       d="m -20.07901,-0.03913174 v 0 4.25000004 0 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0036"
+       d="m -21.32901,4.2108683 v -4.25000004 h 1.25 V 4.2108683 Z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <title
+       id="title136">b'Wire_Jig_2'</title>
+    <path
+       id="Wire_Jig_2_f0012-3"
+       d="m -14.421631,0.07465694 h 1.220139 m 0,0 h -0.02177 -1.19673 m 0,0 h -0.0016 v 0 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0020-6"
+       d="m -14.031337,4.2507065 h -1.19673 v 2 h 1.19673 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0031-3"
+       d="m -14.419996,0.07465694 m 0,0 h -0.0016 v 0 h 1.25 v 0 h -0.02986 m 0,0 h -0.02177 -1.19673 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0032-5"
+       d="m -14.421631,4.3246569 v -4.24999996 0 z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       id="Wire_Jig_2_f0036-2"
+       d="M -15.247917,4.2801282 V 0.03012828 h 1.25 V 4.2801282 Z"
+       stroke="#191919"
+       stroke-width="0.7 px"
+       style="fill:#e5cc19;fill-opacity:1;fill-rule:evenodd;stroke-width:0.7;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+</svg>
