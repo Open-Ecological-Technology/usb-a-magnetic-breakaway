@@ -94,7 +94,18 @@ components:
               wire: {}
               filament: {}
               jig: {}
-              glue: {}
+                super-glue:
+                  id: super-glue
+                  description: Super Glue
+                  quantity: 4
+                  quantityUnits: drops
+                  options:
+                    - loctite-super-glue-ultra-control
+                    - cyanoacrylate-glue-generic
+                  selectedOption: 0
+                  notes: ''
+                  descriptionLong: 'super-glue: Super Glue'
+                  descriptionSelected: 'super-glue: Super Glue (Loctite Super Glue Ultra Gel Control v1.0.0)'
             tools: {}
             precautions: []
             assemblySteps: []
