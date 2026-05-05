@@ -310,8 +310,11 @@ tools: {}
 precautions: []
 assemblySteps: 
   - summary: 'Assemble and test USB-A Magnetic Release'
-    requiredParts: []
-    requiredTools: []
+    requiredParts: 
+      - breakaway-release-assembly
+      - USB
+    requiredTools: 
+      - pc
     details: > 
 
       . Insert a USB hard drive into USB port of the Breakaway. 
