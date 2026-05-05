@@ -30,9 +30,13 @@ Directory contains 3D print files for the magnetic breakaway case.
 
 Directory contains engineering drawings for the magnets which you can provide to a manufacturer for the purpose of ordering the magnets for the magnetic breakway.
 
-#### Magnet_and_PP_Vendor_List.ods
+#### BOM_4.md
 
-File contains a list of manufacturers that sell magnets, pogo pins, and pogo receptors. 
+Contains the current BOM. For earlier versions, see Archived BOMs folder.
+
+#### Build 
+
+This folder contains a manual authoring of the unified model in DOF alpha. 
 
 ## License
 
