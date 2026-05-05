@@ -1,0 +1,620 @@
+# -*- coding: utf-8 -*-
+"""
+BusKill USB-A Magnetic Breakaway Shell Assembly
+FreeCAD Macro v2 — corrected from usbamagb_v04.scad
+Original OpenSCAD author: Melanie Allen
+GNU General Public License v3.0
+
+HOW TO USE:
+  1. Open FreeCAD (0.20+ recommended)
+  2. Macro → Macros → select this file → Execute
+     (or paste into the macro editor and press Run)
+  3. All parts appear in the new document.
+  4. File → Save As to write an .FCStd file.
+  5. To export for printing: select part → File → Export → .stl / .step
+
+PARTS:
+  Release_Enclosure_Body / _Lid  (red, USB-A male, 24×25×8 mm)
+  Release_Face                   (red, pogo pins + magnet pockets)
+  Breakaway_Enclosure_Body / _Lid (blue, USB-A female, 26×26×9 mm)
+  Breakaway_Face                 (blue, pogo receptors + magnet pockets + stopper)
+  Wire_Jig_1 / _2
+
+FIX vs v1:
+  - releasef() inner translate([25,.2,0]) rotate([90,0,0]) now applied correctly
+  - breakaway_face(): plate (inside inner rx90) and pogo-house (outside inner rx90)
+    now have their distinct transform chains — plate gets rx90+rx90=rx180, pogo-house gets rx90
+  - All voids correctly positioned in their respective frames
+  - Hardware shapes (magnets, pogos) defined in module-local frames and translated by callers
+"""
+
+import FreeCAD as App
+import Part
+import math
+
+# ─────────────────────────────────────────────
+#  PARAMETERS  (mirror usbamagb_v04.scad)
+# ─────────────────────────────────────────────
+
+# Magnets
+MAGNET_SIZE  = 3.175   # 1/8" cube magnet
+MAGNET_TOL   = 0.2
+MX = 3.0; MY = 4.0; MZ = 18.1          # magnet_position_x/y/z
+MAGNET_DIST  = 20.0
+
+# Release face extrusion (magnet housings on release face)
+R_EXT_X = 4.75; R_EXT_Y = 1.75; R_EXT_Z = 8.0
+
+# USB male cutout
+U_H=14.0;  U_W=12.0;   U_D=4.7
+
+# USB female cutout
+UF_H=16.0; UF_W=14.25; UF_D=5.7
+
+# Pogo pin geometry
+POGO_LEN=7.6; POGO_DIA=2.8
+POGO_DIST=1.5; SHIFT_P=2.1; SPREAD=4.0
+SIZE_DIFF=0.7   # pogo receptor scale
+
+# Pogo house (extrusion on breakaway face / admission on release face)
+PH_X=15.0;  PH_Y=1.25;  PH_Z=4.0
+PH_POS_X=31.75; PH_POS_Y=0.0; PH_POS_Z=2.25
+
+# Jig slot inside enclosures
+JS_W=17.75; JS_H=8.0; JS_L=4.5
+
+# Face plate dimensions
+I_L_H=25.25; I_L_W=10.0; I_L_D=3.75
+
+# Wire jig
+JIG_W=17.0; JIG_H=1.5; JIG_L=6.25
+
+# Misc
+INNIE_TOL=0.5
+FACE_DIST=26.5      # face_distance (release face)
+
+# scad x=.75, y=.5 (used in breakaway_void offset)
+SCAD_X=0.75; SCAD_Y=0.5
+
+# ─────────────────────────────────────────────
+#  TRANSFORM HELPERS
+#  These mirror OpenSCAD's rotate/translate exactly.
+#  Each returns a NEW shape (never mutates the input).
+# ─────────────────────────────────────────────
+
+def rx(s, a):
+    """rotate([a,0,0]) — rotate a degrees around X at origin."""
+    c = s.copy()
+    c.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), a)
+    return c
+
+def rz(s, a):
+    """rotate([0,0,a]) — rotate a degrees around Z at origin."""
+    c = s.copy()
+    c.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), a)
+    return c
+
+def tv(s, x, y, z):
+    """translate([x,y,z])"""
+    c = s.copy()
+    c.translate(App.Vector(x, y, z))
+    return c
+
+def box_at(w, d, h, x=0, y=0, z=0):
+    """cube([w,d,h]) at translate([x,y,z]) — corner at (x,y,z)."""
+    return Part.makeBox(w, d, h, App.Vector(x, y, z))
+
+def ycyl(r, L, cx, cy, cz):
+    """
+    Cylinder aligned along +Y axis, geometrically centred at (cx,cy,cz).
+    Equivalent to: rotate([90,0,0]) cylinder(h=L,r=r,center=true)
+    placed at (cx,cy,cz).
+    """
+    return Part.makeCylinder(r, L, App.Vector(cx, cy - L/2, cz),
+                              App.Vector(0, 1, 0))
+
+def fuse(*shapes):
+    """Fuse any number of shapes; falls back to compound on failure."""
+    result = shapes[0]
+    for s in shapes[1:]:
+        try:
+            result = result.fuse(s)
+        except Exception:
+            result = Part.makeCompound([result, s])
+    return result
+
+# ─────────────────────────────────────────────
+#  HARDWARE SHAPES  (each in its own module-local frame)
+# ─────────────────────────────────────────────
+
+def magnet_shape():
+    """
+    magnet() module — two cube pockets.
+
+    OpenSCAD:
+        rotate([90,0,0]) translate([MX+dx, MY, MZ]) cube(ms, center=true)
+
+    rotate([90,0,0]) maps (x,y,z)→(x,−z,y), so the translate target
+    (MX+dx, MY, MZ) lands in world at (MX+dx, −MZ, MY).
+    """
+    ms = MAGNET_SIZE + MAGNET_TOL
+    def one(dx):
+        cx = MX + dx
+        cy = -MZ      # −18.1
+        cz = MY       # 4.0
+        return box_at(ms, ms, ms, cx - ms/2, cy - ms/2, cz - ms/2)
+    return fuse(one(0), one(MAGNET_DIST))
+
+
+def pogos_shape():
+    """
+    pogos() module — four Y-aligned cylinders, scale 0.85.
+
+    OpenSCAD:
+        translate([−0.3, 0.1, 4.2]) {
+            translate([SHIFT_P + dx, 0, 0])
+            rotate([90,0,0]) scale(0.85) cylinder(h=7.6, r=1.4, center=true)
+            ...
+        }
+    rotate([90,0,0]) on a Z-cylinder → Y-aligned cylinder.
+    """
+    sc = 0.85
+    r  = (POGO_DIA / 2) * sc
+    L  = POGO_LEN * sc
+    bx = -0.3; by = 0.1; bz = 4.2
+    offsets = [
+        SHIFT_P,
+        POGO_DIST + SPREAD,
+        POGO_DIST + SPREAD + SPREAD - 0.5,
+        POGO_DIST + SPREAD * 3 - 1,
+    ]
+    return fuse(*[ycyl(r, L, bx + dx, by, bz) for dx in offsets])
+
+
+def pogo_recs_shape():
+    """
+    pogo_recs() module — four Y-aligned cylinders, scale SIZE_DIFF (0.7).
+
+    OpenSCAD:
+        translate([−0.7, −0.1, 4.2]) {
+            translate([SHIFT_P + dx, 0, 0])
+            rotate([90,0,0]) scale(SIZE_DIFF) cylinder(...)
+            ...
+        }
+    """
+    sc = SIZE_DIFF
+    r  = (POGO_DIA / 2) * sc
+    L  = POGO_LEN * sc
+    bx = -0.7; by = -0.1; bz = 4.2
+    offsets = [
+        SHIFT_P,
+        POGO_DIST + SPREAD,
+        POGO_DIST + SPREAD * 2,
+        POGO_DIST + SPREAD * 3,
+    ]
+    return fuse(*[ycyl(r, L, bx + dx, by, bz) for dx in offsets])
+
+# ─────────────────────────────────────────────
+#  RELEASE FACE
+# ─────────────────────────────────────────────
+
+def _releasef():
+    """
+    releasef() module.
+
+    ALL geometry lives inside:
+        translate([25, .2, 0])  rotate([90,0,0])  { ... }
+
+    The sub-shapes below are built in the frame BEFORE that inner rotate.
+    Then we apply: rx(inner_geometry, 90) then tv(..., 25, 0.2, 0).
+    """
+    i_x = I_L_H        # 25.25  — face width
+    i_z = 10 - 1.75    # 8.25   — face height in pre-rotate frame
+    i_y = 2.5          # face depth
+
+    # Main plate:  translate([FACE_DIST, 0, 2]) cube([i_x, i_z, i_y])
+    plate = box_at(i_x, i_z, i_y, FACE_DIST, 0, 2)
+
+    # Extrusion 1 (left magnet housing):
+    #   translate([FACE_DIST, 0, 2]) rotate([−90,0,0]) cube([R_EXT_X, R_EXT_Y, R_EXT_Z])
+    # rotate([−90,0,0]) on cube at origin, then translate
+    ext1 = tv(rx(box_at(R_EXT_X, R_EXT_Y, R_EXT_Z), -90),
+               FACE_DIST, 0, 2)
+
+    # Extrusion 2 (right magnet housing):
+    ext2 = tv(rx(box_at(R_EXT_X, R_EXT_Y, R_EXT_Z), -90),
+               FACE_DIST + MAGNET_DIST + 0.25, 0, 2)
+
+    # Rail 1:  translate([FACE_DIST, 0, .75])   cube([i_x, R_EXT_Y, R_EXT_Y])
+    rail1 = box_at(i_x, R_EXT_Y, R_EXT_Y, FACE_DIST, 0,   0.75)
+
+    # Rail 2:  translate([FACE_DIST, 6.5, .75]) cube([i_x, R_EXT_Y, R_EXT_Y])
+    rail2 = box_at(i_x, R_EXT_Y, R_EXT_Y, FACE_DIST, 6.5, 0.75)
+
+    inner = fuse(plate, ext1, ext2, rail1, rail2)
+
+    # Apply inner wrapper: translate([25,.2,0]) rotate([90,0,0])
+    #   → rotate first, then translate
+    return tv(rx(inner, 90), 25, 0.2, 0)
+
+
+def _release_void():
+    """
+    release_void() module.
+    Geometry is in the frame of the outer rotate([90,0,0]) in make_r_face —
+    i.e. it does NOT pass through releasef()'s inner transforms.
+    """
+    # Pogo-house admission (matching the breakaway's extrusion)
+    ph2_px = PH_POS_X + 23.5 - INNIE_TOL    # = 55.25
+    ph2_py = PH_POS_Y - R_EXT_Y - 0.25      # = −2.0
+    ph2_pz = PH_POS_Z - INNIE_TOL           # = 1.75
+    pogo_adm = box_at(
+        PH_X + INNIE_TOL + 0.25,   # 15.75
+        PH_Y + INNIE_TOL,          # 1.75
+        PH_Z + INNIE_TOL + 0.5,    # 5.0
+        ph2_px, ph2_py, ph2_pz
+    )
+
+    # Pogo pin holes:  translate([55.5, −2.6, 0]) pogos()
+    pogs = tv(pogos_shape(), 55.5, -2.6, 0)
+
+    # Magnet pockets:  translate([49.5, 17.85, 0]) magnet()
+    mags = tv(magnet_shape(), 49.5, 17.85, 0)
+
+    return fuse(pogo_adm, pogs, mags)
+
+
+def make_release_face():
+    """
+    make_r_face():
+        translate([−25, 5.75, 4.3]) rotate([90,0,0])
+        difference {
+            releasef();
+            translate([shiftxx, shiftyy, 0]) release_void();
+        }
+    shiftxx=1.5, shiftyy=−1.45
+    """
+    rf   = _releasef()
+    void = tv(_release_void(), 1.5, -1.45, 0)
+    face = rf.cut(void)
+    # Outer wrapper: translate([−25, 5.75, 4.3]) rotate([90,0,0])
+    return tv(rx(face, 90), -25, 5.75, 4.3)
+
+# ─────────────────────────────────────────────
+#  BREAKAWAY FACE
+# ─────────────────────────────────────────────
+
+def _breakaway_face():
+    """
+    breakaway_face() module.
+
+    CRITICAL: the plate IS inside an inner rotate([90,0,0]);
+              the pogo-house is NOT — it sits at the module level.
+
+    OpenSCAD:
+        rotate([90,0,0]) {                                 ← inner rotate
+            translate([26.25, −1, 0])
+            cube([I_L_H+1, I_L_W, I_L_D])
+        }
+        translate([PH_POS_X, PH_POS_Y, PH_POS_Z])        ← no inner rotate
+        cube([PH_X, PH_Y−0.5, PH_Z])
+
+    Then make_b_face() applies a SECOND outer rotate([90,0,0]):
+        plate gets rx(90) ∘ rx(90) = rx(180): (x,y,z)→(x,−y,−z)
+        pogo-house gets only the outer rx(90):  (x,y,z)→(x,−z, y)
+    """
+    # Plate — inside inner rotate([90,0,0])
+    plate_pre = box_at(I_L_H + 1, I_L_W, I_L_D, 25 + 1.25, -1, 0)
+    plate = rx(plate_pre, 90)
+
+    # Pogo-house extrusion — outside inner rotate
+    ph = box_at(PH_X, PH_Y - 0.5, PH_Z, PH_POS_X, PH_POS_Y, PH_POS_Z)
+
+    return fuse(plate, ph)
+
+
+def _breakaway_void():
+    """
+    breakaway_void() module.
+    Geometry in the frame of the outer rotate([90,0,0]) in make_b_face.
+    x=0.75, y=0.5 (module-level scad vars).
+    """
+    # Pogo receptor holes: translate([30+x, y−2, 0]) pogo_recs()
+    precs = tv(pogo_recs_shape(), 30 + SCAD_X, SCAD_Y - 2, 0)   # [30.75, −1.5, 0]
+
+    # Magnet pockets:    translate([24.5, 16.5, 0]) magnet()
+    mags  = tv(magnet_shape(), 24.5, 16.5, 0)
+
+    return fuse(precs, mags)
+
+
+def _stopper():
+    """
+    stopper() module.
+    Called from make_b_face() OUTSIDE the outer rotate/translate,
+    so these coords are already in world space.
+    stopper_x = I_L_H/3 ≈ 8.42,  level=3.75 → z-base = I_L_D−level = 0
+    """
+    sx = I_L_H / 3    # ≈8.42
+    level = 3.75
+    z0 = I_L_D - level  # = 0
+
+    s1 = box_at(sx, 1, 8, I_L_H + 41.25, -6,       z0)  # bottom bar
+    s2 = box_at(sx, 1, 8, I_L_H + 48,    I_L_W - 6, z0)  # top bar
+    s3 = box_at(1,  3, 8, I_L_H + 35,    -5,         z0)  # left post
+    s4 = box_at(1,  3, 8, I_L_H + 62,     2,          z0)  # right post
+    return fuse(s1, s2, s3, s4)
+
+
+def make_breakaway_face():
+    """
+    make_b_face():
+        translate([35, 4, 3.75]) rotate([90,0,0])
+        difference {
+            breakaway_face();
+            translate([shiftxx, 0, 0]) breakaway_void();
+        }
+        stopper()   ← NOT inside the outer rotate/translate
+    shiftxx=1.5
+    """
+    bf   = _breakaway_face()
+    void = tv(_breakaway_void(), 1.5, 0, 0)   # shiftxx=1.5
+    face = bf.cut(void)
+    # Outer wrapper: translate([35, 4, 3.75]) rotate([90,0,0])
+    face = tv(rx(face, 90), 35, 4, 3.75)
+    # stopper() fused in world coords (not rotated)
+    return fuse(face, _stopper())
+
+# ─────────────────────────────────────────────
+#  ENCLOSURE (generic — used for both release and breakaway)
+# ─────────────────────────────────────────────
+
+def _rounded_box_centred(w, d, h, r):
+    """Box centred on XY, base at Z=0, with filleted vertical edges."""
+    box = Part.makeBox(w, d, h, App.Vector(-w/2, -d/2, 0))
+    r = min(r, w/2 - 0.05, d/2 - 0.05)
+    if r <= 0:
+        return box
+    try:
+        verts = [e for e in box.Edges if abs(e.Length - h) < 0.05]
+        if verts:
+            return box.makeFillet(r, verts)
+    except Exception:
+        pass
+    return box
+
+
+def _build_enclosure(e_w, e_l, e_h,
+                     wall_t, corner_r,
+                     post_d, hole_d,
+                     lid_t, lid_lip, lid_tol,
+                     inset, taper,
+                     usb_origin, usb_dims,
+                     jig_z):
+    """
+    Build one enclosure body + lid.
+    usb_origin: App.Vector — lower-left corner of USB cutout
+    usb_dims:   (w, d, h)
+    jig_z:      Z centre of jig slot (slot is cube([JS_H,JS_W,JS_L],true))
+    Returns (body, lid) both centred on XY, base at Z=0.
+    """
+    # ── Outer shell ──────────────────────────────────────────────────────────
+    body = _rounded_box_centred(e_w, e_l, e_h + 1, corner_r)
+
+    # ── Inner hollow ─────────────────────────────────────────────────────────
+    iw = e_w - 2 * wall_t
+    il = e_l - 2 * wall_t
+    inner = Part.makeBox(iw, il, e_h + 1,
+                          App.Vector(-iw/2, -il/2, wall_t))
+    try:
+        inner = inner.makeFillet(max(corner_r - wall_t, 0.05),
+                                  [e for e in inner.Edges
+                                   if abs(e.Length - (e_h + 1)) < 0.05])
+    except Exception:
+        pass
+    body = body.cut(inner)
+
+    # ── Lid lip recess ───────────────────────────────────────────────────────
+    lw = e_w - 2 * lid_lip
+    ll = e_l - 2 * lid_lip
+    lip = Part.makeBox(lw, ll, lid_t, App.Vector(-lw/2, -ll/2, e_h - lid_t))
+    body = body.cut(lip)
+
+    # ── USB cutout ───────────────────────────────────────────────────────────
+    body = body.cut(Part.makeBox(*usb_dims, usb_origin))
+
+    # ── Jig slot (cube([JS_H,JS_W,JS_L],true) at translate([11,0,jig_z])) ──
+    body = body.cut(
+        Part.makeBox(JS_H, JS_W, JS_L,
+                      App.Vector(11 - JS_H/2, -JS_W/2, jig_z - JS_L/2))
+    )
+
+    # ── Support posts with screw holes ───────────────────────────────────────
+    pr = post_d / 2
+    hr = hole_d / 2
+    ph = e_h - wall_t - lid_t
+    px = e_w/2 - wall_t/2 - post_d/2 - inset
+    py = e_l/2 - wall_t/2 - post_d/2 - inset
+    corners = [(px, py), (-px, py-taper), (-px, -(py-taper)), (px, -py)]
+    for cpx, cpy in corners:
+        post = Part.makeCylinder(pr, ph, App.Vector(cpx, cpy, wall_t))
+        hole = Part.makeCylinder(hr, ph, App.Vector(cpx, cpy, wall_t))
+        body = body.fuse(post).cut(hole)
+
+    # ── Lid ──────────────────────────────────────────────────────────────────
+    lid_w = e_w - wall_t - 2 * lid_tol
+    lid_l = e_l - wall_t - 2 * lid_tol
+    lid_h = wall_t - lid_t
+    lid = Part.makeBox(lid_w, lid_l, lid_h,
+                        App.Vector(-lid_w/2, -lid_l/2, e_h - lid_t))
+    for cpx, cpy in corners:
+        lid = lid.cut(Part.makeCylinder(hr, lid_h, App.Vector(cpx, cpy, e_h - lid_t)))
+
+    return body, lid
+
+
+def make_release_enclosure():
+    """
+    enclosure_r(): 24×25×8 mm with USB-A male cutout.
+    make_enclosure_r(): translate([40,−20,0]) rotate([0,0,90])
+    """
+    # usb(): translate([-1,5,0]) cube([14,12,4.7])
+    # combined with translate([-14,-11,2]): corner at (-15,-6,2)
+    body, lid = _build_enclosure(
+        e_w=24, e_l=25, e_h=8,
+        wall_t=1.25, corner_r=0.5,
+        post_d=2.5, hole_d=1.5,
+        lid_t=0.5, lid_lip=0.25, lid_tol=1.0,
+        inset=0.75, taper=1.0,
+        usb_origin=App.Vector(-15, -6, 2),
+        usb_dims=(U_H, U_W, U_D),
+        jig_z=4.5,
+    )
+    # rotate([0,0,90]) then translate([40,−20,0])
+    body = tv(rz(body, 90), 40, -20, 0)
+    lid  = tv(rz(lid,  90), 40, -20, 0)
+    return body, lid
+
+
+def make_breakaway_enclosure():
+    """
+    enclosure_b(): 26×26×9 mm with USB-A female cutout.
+    make_enclosure_b(): translate([75,−20,0]) rotate([0,0,90])
+    """
+    # usb_p(): translate([-1,3.8,0]) cube([16,14.25,5.7])
+    # combined with translate([-14,-11,2]): corner at (-15,-7.2,2)
+    body, lid = _build_enclosure(
+        e_w=26, e_l=26, e_h=9,
+        wall_t=1.25, corner_r=0.5,
+        post_d=2.5, hole_d=1.5,
+        lid_t=0.5, lid_lip=0.5, lid_tol=1.0,
+        inset=0.75, taper=1.0,
+        usb_origin=App.Vector(-15, -7.2, 2),
+        usb_dims=(UF_H, UF_W, UF_D),
+        jig_z=5.0,
+    )
+    body = tv(rz(body, 90), 75, -20, 0)
+    lid  = tv(rz(lid,  90), 75, -20, 0)
+    return body, lid
+
+# ─────────────────────────────────────────────
+#  WIRE JIG
+# ─────────────────────────────────────────────
+
+def make_jig(off_x=0, off_y=0):
+    """
+    jig() module — two rectangular blocks (j_d=20 mm apart) with
+    pogo-pin clearance holes and snap/slot features.
+    """
+    j_d  = 20.0
+    sw   = 0.75   # slot_w
+    sh   = JIG_H / 2   # slot_h = 0.75
+    jww  = sw;  jwh = sh;  jwl = JIG_L - 2   # jigwall dims
+    vw   = 1.25; vh  = sh;  vl  = JIG_L - 2  # var dims
+
+    def block(y0):
+        b = box_at(JIG_W, JIG_L, JIG_H, 0, y0, 0)
+        # Pogo clearance: translate([1.5, y0+3, −2.25]) pogos()
+        pg = tv(pogos_shape(), 1.5, y0 + 3, -2.25)
+        return b.cut(pg)
+
+    b1 = block(0)
+    b2 = block(j_d)
+
+    # Slots on first block top edges
+    def slot(x0):
+        return box_at(sw, JIG_L, sh, x0, 0, sh + 0.7)
+    b1 = b1.cut(slot(0)).cut(slot(JIG_W - sw))
+
+    # Snap walls on second block
+    def jigwall(x0):
+        return box_at(jww, jwl, jwh, x0, j_d, jwh + 0.1 + 0.7)
+    b2 = fuse(b2, jigwall(0.75), jigwall(JIG_W - 1.5))
+
+    # Var ridges (wire separators) on first block
+    def var(x0):
+        return box_at(vw, vl, vh, x0, 0, vh + 0.7)
+    b1 = fuse(b1,
+              var(SPREAD + 0.4),
+              var(SPREAD * 2 - 0.7 + 0.5),
+              var(SPREAD * 3 - 1.2 + 0.5))
+
+    jig = fuse(b1, b2)
+    return tv(jig, off_x, off_y, 0)
+
+# ─────────────────────────────────────────────
+#  DOCUMENT ASSEMBLY
+# ─────────────────────────────────────────────
+
+def _add(doc, name, shape, rgb=(0.7, 0.7, 0.7), transp=0):
+    obj = doc.addObject("Part::Feature", name)
+    obj.Shape = shape
+    if App.GuiUp:
+        import FreeCADGui as Gui
+        v = obj.ViewObject
+        v.ShapeColor = rgb
+        v.Transparency = int(transp * 100)
+    return obj
+
+
+def main():
+    doc  = App.newDocument("BusKill_USBA_Breakaway")
+    errs = []
+
+    print("BusKill USB-A Magnetic Breakaway — building parts…")
+
+    # ── Release (red) ─────────────────────────────────────────────────────────
+    try:
+        rb, rl = make_release_enclosure()
+        _add(doc, "Release_Enclosure_Body", rb, (0.85, 0.1,  0.1))
+        _add(doc, "Release_Enclosure_Lid",  rl, (0.85, 0.1,  0.1), 0.15)
+        print("  ✓ Release enclosure + lid")
+    except Exception as e:
+        errs.append(f"Release enclosure: {e}"); print(f"  ✗ {errs[-1]}")
+
+    try:
+        rf = make_release_face()
+        _add(doc, "Release_Face", rf, (0.85, 0.1, 0.1))
+        print("  ✓ Release face")
+    except Exception as e:
+        errs.append(f"Release face: {e}"); print(f"  ✗ {errs[-1]}")
+
+    # ── Breakaway (blue) ──────────────────────────────────────────────────────
+    try:
+        bb, bl = make_breakaway_enclosure()
+        _add(doc, "Breakaway_Enclosure_Body", bb, (0.1, 0.2, 0.9))
+        _add(doc, "Breakaway_Enclosure_Lid",  bl, (0.1, 0.2, 0.9), 0.15)
+        print("  ✓ Breakaway enclosure + lid")
+    except Exception as e:
+        errs.append(f"Breakaway enclosure: {e}"); print(f"  ✗ {errs[-1]}")
+
+    try:
+        bf = make_breakaway_face()
+        _add(doc, "Breakaway_Face", bf, (0.1, 0.2, 0.9))
+        print("  ✓ Breakaway face")
+    except Exception as e:
+        errs.append(f"Breakaway face: {e}"); print(f"  ✗ {errs[-1]}")
+
+    # ── Wire jigs (yellow) ────────────────────────────────────────────────────
+    try:
+        j1 = make_jig(0,   0)
+        j2 = make_jig(-25, 0)
+        _add(doc, "Wire_Jig_1", j1, (0.9, 0.8, 0.1))
+        _add(doc, "Wire_Jig_2", j2, (0.9, 0.8, 0.1))
+        print("  ✓ Wire jigs (×2)")
+    except Exception as e:
+        errs.append(f"Wire jigs: {e}"); print(f"  ✗ {errs[-1]}")
+
+    doc.recompute()
+
+    if errs:
+        print(f"\n⚠  {len(errs)} part(s) failed — see console above.")
+    else:
+        print("\n✓ All parts built successfully.")
+
+    print("Save: File → Save As → BusKill_USBA_Breakaway.FCStd")
+    print("STL export: select part → File → Export → *.stl")
+    return doc
+
+
+main()
