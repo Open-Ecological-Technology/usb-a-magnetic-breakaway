@@ -1,0 +1,186 @@
+name: usb-a-magnetic-breakaway
+version: 4.0.0
+description: USB-A Magnetic breakaway
+license: (GPL-3.0-or-later AND CC-BY-SA-4.0)
+author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+repository:
+  type: git
+  url: 'https://github.com/Open-Ecological-Technology/usb-a-magnetic-breakaway.git'
+dependencies: {}
+components:
+  breakaway-release-assembly:
+    name: release
+    version: 4.0.0
+    description: Release
+    license: (GPL-3.0-or-later)
+    author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+    dependencies: {}
+    components:
+      release:
+        name: release
+        version: 4.0.0
+        description: Release
+        license: (GPL-3.0-or-later)
+        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+        dependencies: {}
+        components:
+          usbfemale:
+            name: usbfemale
+            version: 1.0.0
+            description: USB female
+            license: (NOASSERTION)
+            author: ''
+            dependencies: {}
+            components: {}
+            parts: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+          body:
+            name: body
+            version: 4.0.0
+            description: Body
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              filament: {}
+            tools: 
+              pc:
+                id: pc
+                description: Personal Computer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - pc-generic
+                selectedOption: 0
+                notes: 'Windows, Mac, or Linux'
+                descriptionLong: 'pc: Personal Computer'
+                descriptionSelected: 'pc: Personal Computer (Personal Computer (generic) v1.0.0)'
+              slicer:
+                id: slicer
+                description: Slicer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - slicer-software-generic
+                selectedOption: 0
+                notes: User's choice of slicer software
+                descriptionLong: 'slicer: Slicer'
+                descriptionSelected: 'slicer: Slicer (Slicer Software (generic) v1.0.0)'
+              _3d-printer:
+                id: _3d-printer
+                description: 3D Printer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - _3d-printer-generic
+                selectedOption: 0
+                notes: Any FDM 3D printer compatible with selected filament
+                descriptionLong: '_3d-printer: 3D Printer'
+                descriptionSelected: '_3d-printer: 3D Printer (3D Printer (generic) v1.0.0)'
+            precautions: []
+            assemblySteps: []
+          wirejig: 
+            name: wirejig
+            version: 4.0.0
+            description: USB female
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              wire: {}
+              filament: {}
+              jig: {}
+              glue: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+          face: 
+            name: face
+            version: 4.0.0
+            description: USB female
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              magnets: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+          lid:
+            name: lid
+            version: 1.0.0
+            description: Lid
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              filament:
+                id: filament
+                description: filament
+                quantity: 4.4
+                quantityUnits: g
+                options:
+                  - pla-filament-generic
+                  - rPET
+                selectedOption: 0
+                notes: ''
+                descriptionLong: ''
+                descriptionSelected: ''
+            tools: {}
+            precautions: []
+            assemblySteps: []
+        parts: {}
+        tools: {}
+        precautions: 
+          - 'Care must be taken when using the soldering iron, the tip is very hot'
+          - 'Always wear safety glasses while working with soldering irons'
+        assemblySteps: 
+          - summary: ''
+            requiredParts: []
+            requiredTools: []
+            details: >
+              . Step 1
+
+              . Step 2
+
+              . Step 3
+
+              .. Substep
+      breakaway:
+        name: breakaway
+        version: 4.0.0
+        description: Breakaway
+        license: (GPL-3.0-or-later)
+        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+        dependencies: {}
+        components:
+          lid:
+            name: lid
+            version: 1.0.0
+            description: Lid
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+        parts: {}
+        tools: {}
+        precautions: []
+        assemblySteps: []  
+    parts: {}
+    tools: {}
+    precautions: []
+    assemblySteps: []  
+parts: {}
+tools: {}
+precautions: []
+assemblySteps: []    
