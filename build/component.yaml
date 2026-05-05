@@ -91,7 +91,21 @@ components:
                 descriptionLong: '_3d-printer: 3D Printer'
                 descriptionSelected: '_3d-printer: 3D Printer (3D Printer (generic) v1.0.0)'
             precautions: []
-            assemblySteps: []
+            assemblySteps: 
+            - summary: 'Print Enclosure Body'
+              requiredParts: 
+                - filament
+              requiredTools: 
+                - pc
+                - slicer
+                - _3d-printer
+              details: > 
+
+                . Open OpenSCAD file
+
+                . Export Enclosure Body as STL
+
+                . Slice STL to desired settings 
           wirejig: 
             name: wirejig
             version: 4.0.0
@@ -186,7 +200,21 @@ components:
                 descriptionSelected: 'filament: Filament (PLA Filament (generic) v1.0.0)'
             tools: {}
             precautions: []
-            assemblySteps: []
+            assemblySteps: 
+              - summary: 'Print Enclosure Face'
+                requiredParts: 
+                  - filament
+                requiredTools: 
+                  - pc
+                  - slicer
+                  - _3d-printer
+                details: > 
+
+                  . Open OpenSCAD file
+
+                  . Export Enclosure Body as STL
+
+                  . Slice STL to desired settings 
           lid:
             name: lid
             version: 1.0.0
@@ -210,7 +238,21 @@ components:
                 descriptionSelected: ''
             tools: {}
             precautions: []
-            assemblySteps: []
+            assemblySteps: 
+            - summary: 'Print Enclosure Lid'
+              requiredParts: 
+                - filament
+              requiredTools: 
+                - pc
+                - slicer
+                - _3d-printer
+              details: > 
+
+                . Open OpenSCAD file
+
+                . Export Enclosure Body as STL
+
+                . Slice STL to desired settings 
         parts: {}
         tools: {}
         precautions: 
