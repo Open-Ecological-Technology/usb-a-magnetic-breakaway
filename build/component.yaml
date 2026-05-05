@@ -2,7 +2,7 @@ name: usb-a-magnetic-breakaway
 version: 4.0.0
 description: USB-A Magnetic breakaway
 license: (GPL-3.0-or-later AND CC-BY-SA-4.0)
-author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
 repository:
   type: git
   url: 'https://github.com/Open-Ecological-Technology/usb-a-magnetic-breakaway.git'
@@ -13,7 +13,7 @@ components:
     version: 4.0.0
     description: Release
     license: (GPL-3.0-or-later)
-    author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+    author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
     dependencies: {}
     components:
       release:
@@ -21,7 +21,7 @@ components:
         version: 4.0.0
         description: Release
         license: (GPL-3.0-or-later)
-        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
         dependencies: {}
         components:
           usbfemale:
@@ -41,7 +41,7 @@ components:
             version: 4.0.0
             description: Body
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -87,7 +87,7 @@ components:
             version: 4.0.0
             description: USB female
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -103,7 +103,7 @@ components:
             version: 4.0.0
             description: USB female
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -116,7 +116,7 @@ components:
             version: 1.0.0
             description: Lid
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -152,7 +152,7 @@ components:
         version: 4.0.0
         description: Breakaway
         license: (GPL-3.0-or-later)
-        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+        author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
         dependencies: {}
         components:
           usbfemale:
@@ -172,7 +172,7 @@ components:
             version: 4.0.0
             description: Body
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -218,7 +218,7 @@ components:
             version: 4.0.0
             description: USB female
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: 
@@ -235,7 +235,7 @@ components:
             version: 1.0.0
             description: Lid
             license: (GPL-3.0-or-later)
-            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.net)'
             dependencies: {}
             components: {}
             parts: {}
