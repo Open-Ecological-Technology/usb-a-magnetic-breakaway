@@ -45,7 +45,17 @@ components:
             dependencies: {}
             components: {}
             parts: 
-              filament: {}
+              filament: 
+                id: filament
+                description: Filament
+                quantity: 1.6
+                quantityUnits: g
+                options:
+                  - pla-filament-generic
+                selectedOption: 0
+                notes: Thickness to match selected 3D printer specs
+                descriptionLong: 'filament: Filament'
+                descriptionSelected: 'filament: Filament (PLA Filament (generic) v1.0.0)'
             tools: 
               pc:
                 id: pc
@@ -151,7 +161,29 @@ components:
             dependencies: {}
             components: {}
             parts: 
-              magnets: {}
+              magnet: 
+                id: magnet
+                description: Magnetic
+                quantity: 2
+                quantityUnits: quantity
+                options:
+                  - Cube
+                  - disc 
+                selectedOption: 0
+                notes: 4mm
+                descriptionLong: ''
+                descriptionSelected: ''
+              filament:
+                id: filament
+                description: Filament
+                quantity: 1.6
+                quantityUnits: g
+                options:
+                  - pla-filament-generic
+                selectedOption: 0
+                notes: Thickness to match selected 3D printer specs
+                descriptionLong: 'filament: Filament'
+                descriptionSelected: 'filament: Filament (PLA Filament (generic) v1.0.0)'
             tools: {}
             precautions: []
             assemblySteps: []
