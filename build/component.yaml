@@ -145,13 +145,8 @@ components:
             requiredParts: []
             requiredTools: []
             details: >
-              . Step 1
-
-              . Step 2
-
-              . Step 3
-
-              .. Substep
+              . 'Insert the wire jig into the face'
+              . 'Solder the usb to the wire jig''
       breakaway:
         name: breakaway
         version: 4.0.0
@@ -160,6 +155,81 @@ components:
         author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
         dependencies: {}
         components:
+          usbfemale:
+            name: usbmale
+            version: 1.0.0
+            description: USB male
+            license: (NOASSERTION)
+            author: ''
+            dependencies: {}
+            components: {}
+            parts: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+          body:
+            name: body
+            version: 4.0.0
+            description: Body
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              filament: {}
+            tools: 
+              pc:
+                id: pc
+                description: Personal Computer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - pc-generic
+                selectedOption: 0
+                notes: 'Windows, Mac, or Linux'
+                descriptionLong: 'pc: Personal Computer'
+                descriptionSelected: 'pc: Personal Computer (Personal Computer (generic) v1.0.0)'
+              slicer:
+                id: slicer
+                description: Slicer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - slicer-software-generic
+                selectedOption: 0
+                notes: User's choice of slicer software
+                descriptionLong: 'slicer: Slicer'
+                descriptionSelected: 'slicer: Slicer (Slicer Software (generic) v1.0.0)'
+              _3d-printer:
+                id: _3d-printer
+                description: 3D Printer
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - _3d-printer-generic
+                selectedOption: 0
+                notes: Any FDM 3D printer compatible with selected filament
+                descriptionLong: '_3d-printer: 3D Printer'
+                descriptionSelected: '_3d-printer: 3D Printer (3D Printer (generic) v1.0.0)'
+            precautions: []
+            assemblySteps: []
+          wirejig: 
+            name: wirejig
+            version: 4.0.0
+            description: USB female
+            license: (GPL-3.0-or-later)
+            author: 'goldfishlaser AKA Melanie Allen (https://mnallen.online)'
+            dependencies: {}
+            components: {}
+            parts: 
+              wire: {}
+              filament: {}
+              jig: {}
+              glue: {}
+            tools: {}
+            precautions: []
+            assemblySteps: []
+          face: 
           lid:
             name: lid
             version: 1.0.0
@@ -175,12 +245,33 @@ components:
         parts: {}
         tools: {}
         precautions: []
-        assemblySteps: []  
+        assemblySteps: 
+          - summary: ''
+            requiredParts: []
+            requiredTools: []
+            details: >
+              . Insert the wire jig into the face.
+              . Solder the usb to the wire jig. 
     parts: {}
     tools: {}
     precautions: []
-    assemblySteps: []  
+    assemblySteps: 
+      - summary: ''
+        requiredParts: []
+        requiredTools: []
+        details: >
+          . Connect the Breakaway and Release together at the faces.   
 parts: {}
 tools: {}
 precautions: []
-assemblySteps: []    
+assemblySteps: 
+  - summary: 'Assemble and test USB-A Magnetic Release'
+    requiredParts: []
+    requiredTools: []
+    details: > 
+
+      . Insert a USB hard drive into USB port of the Breakaway. 
+
+      . Insert the USB female of the Release into the computer.
+
+      . The USB drive should be detected. 
