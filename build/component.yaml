@@ -106,7 +106,40 @@ components:
                   notes: ''
                   descriptionLong: 'super-glue: Super Glue'
                   descriptionSelected: 'super-glue: Super Glue (Loctite Super Glue Ultra Gel Control v1.0.0)'
-            tools: {}
+            tools: 
+              soldering-iron:
+                id: soldering-iron
+                description: Soldering Iron
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - soldering-iron-generic
+                selectedOption: 0
+                notes: ''
+                descriptionLong: 'soldering-iron: Soldering Iron'
+                descriptionSelected: 'soldering-iron: Soldering Iron (Soldering Iron (generic) v1.0.0)'
+              helping-hands:
+                id: helping-hands
+                description: Helping Hands
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - mini-vice-helping-hands-generic
+                selectedOption: 0
+                notes: ''
+                descriptionLong: 'helping-hands: Helping Hands'
+                descriptionSelected: 'helping-hands: Helping Hands (Mini Vice Helping Hands (generic) v1.0.0)'
+              fume-extractor:
+                id: fume-extractor
+                description: Fume Extractor
+                quantity: 1
+                quantityUnits: part
+                options:
+                  - solder-fume-extractor-generic
+                selectedOption: 0
+                notes: ''
+                descriptionLong: 'fume-extractor: Fume Extractor'
+                descriptionSelected: 'fume-extractor: Fume Extractor (Solder Fume Extractor (generic) v1.0.0)'
             precautions: []
             assemblySteps: []
           face: 
